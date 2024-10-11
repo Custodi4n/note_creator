@@ -1,0 +1,6 @@
+{
+    "name": "Note Creator",
+    "description": "Приложения для создания заметок с помощью MarkDown",
+    "version": "0.1",
+    "icon": "assets/icon.png"
+}
