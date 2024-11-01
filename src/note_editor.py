@@ -38,7 +38,7 @@ def open_create_note_editor(page):
     def open_file_picker(e):
         file_picker = flt.FilePicker(on_result=file_picker_result)
         page.add(file_picker)
-        file_picker.pick_files(allowed_extensions=['png', 'jpg'])
+        file_picker.pick_files(allowed_extensions=['png', 'jpg', 'gif', 'mp4'])
 
     title = flt.TextField(
             width=350,
@@ -339,7 +339,7 @@ def open_note_editor(page, note_id):
     def open_file_picker(e):
         file_picker = flt.FilePicker(on_result=file_picker_result)
         page.add(file_picker)
-        file_picker.pick_files(allowed_extensions=['png', 'jpg'])
+        file_picker.pick_files(allowed_extensions=['png', 'jpg', 'gif', 'mp4'])
 
     md = flt.Markdown(
         value="",
