@@ -15,26 +15,13 @@ def create_database():
     ''')
 
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Media (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            note_id INTEGER,
-            media_type TEXT,
-            file_path TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (note_id) REFERENCES Notes(id) ON DELETE CASCADE
-        );
-    ''')
-
-    cursor.execute('''
         CREATE TABLE IF NOT EXISTS Reminders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            note_id INTEGER,
-            reminder_time TIMESTAMP,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (note_id) REFERENCES Notes(id) ON DELETE CASCADE
+            task_name TEXT NOT NULL,
+            reminder_date TEXT NOT NULL,
+            reminder_time TEXT NOT NULL
         );
     ''')
 
     conn.commit()
     conn.close()
-

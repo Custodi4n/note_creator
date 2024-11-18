@@ -38,7 +38,7 @@ def open_create_note_editor(page):
     def open_file_picker(e):
         file_picker = flt.FilePicker(on_result=file_picker_result)
         page.add(file_picker)
-        file_picker.pick_files(allowed_extensions=['png', 'jpg', 'gif', 'mp4'])
+        file_picker.pick_files(allowed_extensions=['png', 'jpg', 'gif'])
 
     title = flt.TextField(
             width=350,
@@ -57,6 +57,19 @@ def open_create_note_editor(page):
             cursor_color="#D1D1D1"
         )
 
+    def resize_container(e, focus_state):
+        if focus_state == "focused":
+            # Если поле в фокусе, уменьшаем высоту контейнера
+            cont_content.height = 350
+            content.height = 350
+            # Задаем новую высоту
+        else:
+            # Восстанавливаем высоту, если поле потеряло фокус
+            cont_content.height = 500
+            content.height = 500
+        cont_content.update()
+        content.update()
+
     content = flt.TextField(
             multiline=True,
             hint_text="Code",
@@ -70,6 +83,8 @@ def open_create_note_editor(page):
             bgcolor="#252525",
             border_color="#252525",
             cursor_color="#D1D1D1",
+            on_focus=lambda e: resize_container(e, "focused"),
+            on_blur=lambda e: resize_container(e, "blurred")
         )
 
     cont_content = flt.Container(
@@ -250,6 +265,19 @@ def open_note_editor(page, note_id):
         cursor_color="#D1D1D1"
     )
 
+    def resize_container(e, focus_state):
+        if focus_state == "focused":
+            # Если поле в фокусе, уменьшаем высоту контейнера
+            cont_content.height = 350
+            content.height = 350
+            # Задаем новую высоту
+        else:
+            # Восстанавливаем высоту, если поле потеряло фокус
+            cont_content.height = 500
+            content.height = 500
+        cont_content.update()
+        content.update()
+
     content = flt.TextField(
         multiline=True,
         hint_text="Code",
@@ -263,6 +291,8 @@ def open_note_editor(page, note_id):
         bgcolor="#252525",
         border_color="#252525",
         cursor_color="#D1D1D1",
+        on_focus=lambda e: resize_container(e, "focused"),
+        on_blur=lambda e: resize_container(e, "blurred")
     )
 
     cont_content = flt.Container(
@@ -339,7 +369,7 @@ def open_note_editor(page, note_id):
     def open_file_picker(e):
         file_picker = flt.FilePicker(on_result=file_picker_result)
         page.add(file_picker)
-        file_picker.pick_files(allowed_extensions=['png', 'jpg', 'gif', 'mp4'])
+        file_picker.pick_files(allowed_extensions=['png', 'jpg', 'gif'])
 
     md = flt.Markdown(
         value="",
